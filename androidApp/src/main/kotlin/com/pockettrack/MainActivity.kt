@@ -1,5 +1,6 @@
 package com.pockettrack
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -18,8 +19,9 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@SuppressLint("ComposableNaming")
 @Preview
 @Composable
-fun AppAndroidPreview() {
+fun appAndroidPreview() {
     App()
 }
