@@ -1,4 +1,5 @@
-# PocketTrack
+[![quality](https://github.com/marciotenorio/PocketTrack/actions/workflows/quality.yml/badge.svg)](https://github.com/marciotenorio/PocketTrack/actions/workflows/quality.yml)
+# PocketTrack 
 
 - [Documentação](docs/proposta.md)
 
