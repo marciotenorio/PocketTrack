@@ -9,8 +9,7 @@
    - **Papel:** Responsável por todas as etapas do projeto
 
 ## Coorte
-   A definir.
-
+  - Online
 
 ## Description
 

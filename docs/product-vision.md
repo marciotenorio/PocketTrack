@@ -6,7 +6,7 @@
 
 **O PocketTrack** é um aplicativo móvel de controle financeiro pessoal
 
-**Que** permite registrar e categorizar transações de forma rápida, acompanhar o resumo financeiro do período e manter comprovantes associados aos gastos,
+**Que** permite registrar e categorizar transações de forma rápida, acompanhar o resumo financeiro do período,
 
 **Diferente** de planilhas e soluções financeiras mais complexas,
 
