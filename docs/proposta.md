@@ -21,3 +21,5 @@
    O Firebase foi escolhido por oferecer serviços prontos de autenticação, banco de dados e sincronização de dados. Essa abordagem reduz a necessidade de configurar e manter um servidor próprio, permitindo concentrar o desenvolvimento nas funcionalidades do aplicativo. O Supabase foi considerado, mas devido a equipe técnica
    já ter contato prévio com o Firebase, consideramos que a curva de aprendizado seria bem menor e isso é importante
    devido o tempo de desenvolvimento.
+
+6. **Vídeo** - [Link](https://youtu.be/rzIshzAgKyQ)
