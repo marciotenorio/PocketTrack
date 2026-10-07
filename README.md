@@ -11,6 +11,86 @@
 ## Coorte
   - Online
 
+## Sprint 1 — Interface e navegação
+
+- **Vídeo da Sprint 1:** _(adicionar o link)_
+- Registro de uso de IA: [docs/uso-de-ia.md](docs/uso-de-ia.md)
+
+### Telas do MVP
+
+| Tela | O que faz |
+|---|---|
+| Entrar | E-mail e senha, com validação; leva ao cadastro |
+| Criar conta | Nome, e-mail, senha e confirmação, com validação |
+| Transações | Histórico (mais recentes primeiro) com o resumo do mês no topo |
+| Detalhes | Valor, tipo, categoria e data; editar e excluir (com confirmação) |
+| Nova / Editar transação | Tipo, descrição, valor, data e categoria; "Salvar" só habilita com tudo válido |
+| Resumo mensal | Receitas, despesas, saldo e despesas por categoria, mês a mês |
+| Categorias | Cadastro de categorias; só remove as que não estão em uso |
+| Ajustes | Conta, tema (sistema, claro ou escuro), lembrete diário e sair |
+
+Os dados ficam em memória nesta sprint (estado elevado acima da navegação). Persistência
+local, Firebase e o agendamento do lembrete entram na Sprint 2.
+
+### Navegação
+
+- Rotas tipadas `@Serializable` em [`Rotas.kt`](shared/src/commonMain/kotlin/com/pockettrack/navegacao/Rotas.kt),
+  com argumento em `DetalheTransacao(id)` e `EditarTransacao(id)`.
+- As telas recebem lambdas; quem navega é o `NavHost`
+  ([`GrafoPrincipal.kt`](shared/src/commonMain/kotlin/com/pockettrack/navegacao/GrafoPrincipal.kt)).
+- Entrar e Criar conta formam um grafo aninhado
+  ([`FluxoAutenticacao.kt`](shared/src/commonMain/kotlin/com/pockettrack/navegacao/FluxoAutenticacao.kt)).
+
+### Deep link
+
+`pockettrack://transacao/{id}` abre o detalhe da transação. Declarado com `navDeepLink` no
+grafo e com o `intent-filter` no [`AndroidManifest.xml`](androidApp/src/main/AndroidManifest.xml).
+
+```bash
+adb shell am start -a android.intent.action.VIEW -d "pockettrack://transacao/2"
+```
+
+Como os dados ainda ficam em memória, o app abre na tela de entrada; depois de entrar, ele
+mostra o detalhe da transação 2 (Aluguel), e o Voltar leva à lista de transações.
+
+### Tema e layout adaptativo
+
+- Material 3 com esquema de cor próprio nos modos claro e escuro
+  ([`Tema.kt`](shared/src/commonMain/kotlin/com/pockettrack/ui/tema/Tema.kt)); o modo pode ser
+  forçado em Ajustes.
+- O layout segue a largura da janela (`currentWindowAdaptiveInfo().windowSizeClass`):
+  - **compacta** (< 600 dp, celular em pé): barra de navegação inferior;
+  - **média** (600–840 dp, celular deitado): trilho de navegação lateral;
+  - **expandida** (≥ 840 dp, tablet ou desktop): trilho lateral e, em Transações, lista e
+    detalhe lado a lado.
+- No desktop a janela abre com tamanho de celular; redimensione para ver as outras larguras.
+
+### Acessibilidade
+
+O que foi feito no código:
+
+- Botões só com ícone têm `contentDescription` (Voltar, Mostrar senha, Escolher data, Mês
+  anterior/próximo, Remover categoria). Ícones ao lado de texto são decorativos (`null`).
+- Linhas que alternam algo são um único elemento: o lembrete é `toggleable` com papel de
+  Switch, e as opções de tipo, tema e horário são `selectable` com papel de RadioButton.
+- Títulos de tela e de seção marcados com `heading()`.
+- Cada transação da lista é lida como uma frase ("Despesa: Supermercado, R$ 387,90,
+  Alimentação, 06/10/2026") e anuncia se está selecionada no modo lista e detalhe.
+- Campos com erro anunciam o erro (`semantics { error(...) }`); o nome do mês no resumo é uma
+  *live region*.
+- Cores só pelos papéis do tema; alvos de toque de pelo menos 48 dp (componentes Material 3
+  e linhas com altura mínima de 56 dp).
+
+Verificação no aparelho (TalkBack e Accessibility Scanner): _(registrar aqui o que foi
+encontrado e corrigido)_
+
+### Qualidade
+
+O workflow [`quality.yml`](.github/workflows/quality.yml) compila Android, desktop e iOS e
+roda `ktlint`, `detekt` e os testes. As regras das telas (validação, dinheiro, datas e resumo)
+são funções puras com testes em
+[`RegrasTest.kt`](shared/src/commonTest/kotlin/com/pockettrack/RegrasTest.kt).
+
 ## Description
 
 This is a Kotlin Multiplatform project targeting Android, iOS, Desktop (JVM).
