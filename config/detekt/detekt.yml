@@ -1,0 +1,17 @@
+# Ajustes sobre a configuração padrão do detekt (buildUponDefaultConfig = true) para
+# código Compose: funções @Composable usam PascalCase, recebem muitos parâmetros
+# (estado elevado: dados entram, eventos saem) e o NavHost concentra os destinos.
+# Os @Preview usam dados fixos de exemplo.
+naming:
+  FunctionNaming:
+    ignoreAnnotated: ['Composable']
+
+complexity:
+  LongParameterList:
+    ignoreAnnotated: ['Composable']
+  LongMethod:
+    ignoreAnnotated: ['Composable']
+
+style:
+  MagicNumber:
+    ignoreAnnotated: ['Preview']
