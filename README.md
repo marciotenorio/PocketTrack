@@ -81,8 +81,7 @@ O que foi feito no código:
 - Cores só pelos papéis do tema; alvos de toque de pelo menos 48 dp (componentes Material 3
   e linhas com altura mínima de 56 dp).
 
-Verificação no aparelho (TalkBack e Accessibility Scanner): _(registrar aqui o que foi
-encontrado e corrigido)_
+Teste com o leitor de tela (TalkBack): _(registrar aqui o que foi encontrado e corrigido)_
 
 ### Qualidade
 
