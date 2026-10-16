@@ -8,6 +8,7 @@ plugins {
     alias(libs.plugins.detekt) apply false
     alias(libs.plugins.kotlinJvm) apply false
     alias(libs.plugins.kotlinMultiplatform) apply false
+    alias(libs.plugins.kotlinSerialization) apply false
     alias(libs.plugins.ktlint) apply false
 }
 
@@ -19,6 +20,7 @@ subprojects {
         buildUponDefaultConfig = true
         parallel = true
         ignoreFailures = false
+        config.setFrom(rootProject.file("config/detekt/detekt.yml"))
         failOnSeverity = dev.detekt.gradle.extensions.FailOnSeverity.Warning
         source.setFrom(fileTree("src") { include("**/*.kt") })
     }

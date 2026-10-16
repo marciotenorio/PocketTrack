@@ -1,0 +1,9 @@
+<resources>
+    <string name="person_form_name_label">Name</string>
+    <string name="person_form_age_label">Age</string>
+    <string name="person_form_submit">Submit</string>
+    <string name="person_form_success">Saved %1$s, %2$d years old</string>
+    <string name="person_form_error_name_too_short">Name must be at least %1$d characters</string>
+    <string name="person_form_error_age_invalid">Enter a valid age</string>
+    <string name="person_form_error_age_too_high">Age must be less than %1$d</string>
+</resources>
